@@ -9,10 +9,11 @@ spec:
       labels:
         k8s-app: kube-cni
     spec:
+      #restartPolicy: Never
       hostNetwork: true
       containers:
       - name: kube-cni
-        image: dnardo/kube-cni-amd64
+        image: dnardo/kube-cni-amd64:cb0de2a
         securityContext:
           privileged: true
         volumeMounts:
