@@ -144,27 +144,7 @@
 			"Rev": "054b33e6527139ad5b1ec2f6232c3b175bd9a30c"
 		},
 		{
-			"ImportPath": "golang.org/x/text/cases",
-			"Rev": "cfdf022e86b4ecfb646e1efbd7db175dd623a8fa"
-		},
-		{
-			"ImportPath": "golang.org/x/text/internal/tag",
-			"Rev": "cfdf022e86b4ecfb646e1efbd7db175dd623a8fa"
-		},
-		{
-			"ImportPath": "golang.org/x/text/language",
-			"Rev": "cfdf022e86b4ecfb646e1efbd7db175dd623a8fa"
-		},
-		{
-			"ImportPath": "golang.org/x/text/runes",
-			"Rev": "cfdf022e86b4ecfb646e1efbd7db175dd623a8fa"
-		},
-		{
 			"ImportPath": "golang.org/x/text/secure/bidirule",
-			"Rev": "cfdf022e86b4ecfb646e1efbd7db175dd623a8fa"
-		},
-		{
-			"ImportPath": "golang.org/x/text/secure/precis",
 			"Rev": "cfdf022e86b4ecfb646e1efbd7db175dd623a8fa"
 		},
 		{
