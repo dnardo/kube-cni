@@ -9,7 +9,6 @@ spec:
       labels:
         k8s-app: kube-cni
     spec:
-      #restartPolicy: Never
       hostNetwork: true
       containers:
       - name: kube-cni
