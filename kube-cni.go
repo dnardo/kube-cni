@@ -1,6 +1,7 @@
 package main
 
 import (
+	goflag "flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -14,8 +15,8 @@ import (
 )
 
 var (
-	cniDir  = "/host/etc/cni/net.d"
-	cniConf = `
+	cniPath         = "/host/etc/cni/net.d/kube-cni.conf"
+	cniConfTemplate = `
 {
         "cniVersion": "0.3.1",
         "name": "mynet",
@@ -44,6 +45,7 @@ var (
 )
 
 func main() {
+	goflag.CommandLine.Parse([]string{})
 	logs.InitLogs()
 	defer logs.FlushLogs()
 	node, _ := os.Hostname()
@@ -63,10 +65,10 @@ func main() {
 		os.Exit(1)
 	}
 	glog.Infof("Install CNI on %q", node)
-	glog.Infof("Adding config %q to %q", cniConf, cniDir)
-	fmt.Sprintf(cniConf, cidr)
-	if err := ioutil.WriteFile(cniDir, []byte(cniConf), 0644); err != nil {
-		glog.Errorf("failed to write cni configuration to %q", cniDir)
+	glog.Infof("Adding config %q to %q", cniConf, cniPath)
+	cniConf := fmt.Sprintf(cniConfTemplate, cidr)
+	if err := ioutil.WriteFile(cniPath, []byte(cniConf), 0644); err != nil {
+		glog.Errorf("failed to write cni configuration to %q", cniPath)
 		os.Exit(1)
 	}
 }
