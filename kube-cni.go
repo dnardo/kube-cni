@@ -10,7 +10,7 @@ import (
 	"k8s.io/client-go/rest"
 )
 
-const (
+var (
 	cniDir  = "/etc/cni/net.d"
 	cniConf = `
 {
@@ -56,7 +56,7 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Sprintf(cniConf, cidr)
-	ioutil.WriteFile(cniDir, cniConf, 0644)
+	ioutil.WriteFile(cniDir, []byte(cniConf), 0644)
 }
 
 func getPodCidr(client *kubernetes.Clientset, node string) (string, error) {
