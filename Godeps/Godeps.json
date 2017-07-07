@@ -572,6 +572,11 @@
 			"ImportPath": "k8s.io/client-go/util/integer",
 			"Comment": "v2.0.0-alpha.0-424-gb1ed435",
 			"Rev": "b1ed43528171d6a3c0292ff33a4025b2e89a912e"
+		},
+		{
+			"ImportPath": "k8s.io/kubernetes/pkg/util/logs",
+			"Comment": "v1.8.0-alpha.1-843-g823f31ec91",
+			"Rev": "823f31ec91ca80e30ec8b3fc8c8e99267669f83b"
 		}
 	]
 }
