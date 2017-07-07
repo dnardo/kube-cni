@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	cniDir  = "/etc/cni/net.d"
+	cniDir  = "/host/etc/cni/net.d"
 	cniConf = `
 {
         "cniVersion": "0.3.1",
@@ -43,6 +43,8 @@ var (
 )
 
 func main() {
+	logs.InitLogs()
+	defer logs.FlushLogs()
 	node, _ := os.Hostname()
 	config, err := rest.InClusterConfig()
 	if err != nil {
