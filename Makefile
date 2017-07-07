@@ -19,7 +19,7 @@ BIN := kube-cni
 PKG := k8s.io/kube-cni
 
 # Where to push the docker image.
-REGISTRY ?= hub.docker.com/dnardo
+REGISTRY ?= dnardo/kube-cni
 
 # Which architecture to build - see $(ALL_ARCH) for options.
 ARCH ?= amd64
