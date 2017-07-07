@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: kube-cni
+  namespace: kube-system
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: kube-cni
+    spec:
+      hostNetwork: true
+      containers:
+      - name: kube-cni
+        image: dnardo/kube-cni-amd64
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - mountPath: /host/opt/cni/bin                                                                                                       
+            name: cni-bin-dir                                                                                                                  
+          - mountPath: /host/etc/cni/net.d                                                                                                     
+            name: cni-net-dir        
+      volumes:
+        - name: cni-bin-dir
+          hostPath:
+            path: /home/kubernetes/bin
+        - name: cni-net-dir
+          hostPath:
+            path: /etc/cni/net.d   
