@@ -2,11 +2,42 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
+)
+
+const (
+	cniDir  = "/etc/cni/net.d"
+	cniConf = `
+{
+        "cniVersion": "0.3.1",
+        "name": "mynet",
+        "plugins": [
+                {
+                        "type": "ptp",
+                        "ipMasq": true,
+                        "ipam": {
+                                "type": "host-local",
+                                "subnet": "%s",
+                                "routes": [
+                                        {
+                                                "dst": "0.0.0.0/0"
+                                        }
+                                ]
+                        }
+                },
+                {
+                        "type": "portmap",
+                        "capabilities": {"portMappings": true},
+                        "snat": false
+                }
+        ]
+}
+`
 )
 
 func main() {
@@ -16,18 +47,16 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Println(config)
 	c, err := kubernetes.NewForConfig(config)
 	if err != nil {
-		fmt.Println(err)
 		os.Exit(1)
 	}
 	cidr, err := getPodCidr(c, node)
 	if err != nil {
-		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Println(cidr)
+	fmt.Sprintf(cniConf, cidr)
+	ioutil.WriteFile(cniDir, cniConf, 0644)
 }
 
 func getPodCidr(client *kubernetes.Clientset, node string) (string, error) {
