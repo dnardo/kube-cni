@@ -13,7 +13,7 @@ spec:
       hostNetwork: true
       containers:
       - name: kube-cni
-        image: dnardo/kube-cni-amd64:409691a
+        image: dnardo/kube-cni-amd64:5055bf5
         securityContext:
           privileged: true
         volumeMounts:
