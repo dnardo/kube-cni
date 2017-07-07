@@ -61,6 +61,7 @@ func main() {
 	}
 	glog.Infof("Install CNI on %q", node)
 	glog.Infof("Adding config %q to %q", cniConf, cniDir)
+	fmt.Sprintf(cniConf, cidr)
 	if err := ioutil.WriteFile(cniDir, []byte(cniConf), 0644); err != nil {
 		glog.Errorf("failed to write cni configuration to %q", cniDir)
 		os.Exit(1)
