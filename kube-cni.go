@@ -18,27 +18,21 @@ var (
 	cniPath         = "/host/etc/cni/net.d/kube-cni.conf"
 	cniConfTemplate = `
 {
-        "cniVersion": "0.3.1",
-        "name": "mynet",
-        "plugins": [
-                {
-                        "type": "ptp",
-                        "ipam": {
-                                "type": "host-local",
-                                "subnet": "%s",
-                                "routes": [
-                                        {
-                                                "dst": "0.0.0.0/0"
-                                        }
-                                ]
-                        }
-                },
-                {
-                        "type": "portmap",
-                        "capabilities": {"portMappings": true},
-                        "noSnat": true
-                }
-        ]
+  "cniVersion": "0.3.1",
+  "name": "mynet",
+  "plugins": [
+  {
+    "type": "ptp",
+    "ipam": {
+      "type": "host-local",
+      "subnet": "%s",
+    },
+    {
+      "type": "portmap",
+      "capabilities": {"portMappings": true},
+      "noSnat": true
+    }
+  ]
 }
 `
 )
