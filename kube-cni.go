@@ -23,7 +23,6 @@ var (
         "plugins": [
                 {
                         "type": "ptp",
-                        "ipMasq": true,
                         "ipam": {
                                 "type": "host-local",
                                 "subnet": "%s",
@@ -37,7 +36,7 @@ var (
                 {
                         "type": "portmap",
                         "capabilities": {"portMappings": true},
-                        "snat": false
+                        "noSnat": true
                 }
         ]
 }
