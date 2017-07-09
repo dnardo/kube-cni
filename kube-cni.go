@@ -69,6 +69,7 @@ func main() {
 		glog.Errorf("failed to write cni configuration to %q: %v", cniPath, err)
 		os.Exit(1)
 	}
+	select {}
 }
 
 func getPodCidr(client *kubernetes.Clientset, node string) (string, error) {
