@@ -18,14 +18,20 @@ var (
 	cniPath         = "/host/etc/cni/net.d/kube-cni.conf"
 	cniConfTemplate = `
 {
-  "cniVersion": "0.3.1",
-  "name": "mynet",
+  "name": "k8s-pod-network",
+  "cniVersion": "0.3.0",
   "plugins": [
-  {
-    "type": "ptp",
-    "ipam": {
-      "type": "host-local",
-      "subnet": "%s",
+    {
+      "type": "ptp",
+      "ipam": {
+        "type": "host-local",
+        "subnet": "%s",
+	"routes": [
+	  {
+	    "dst": "0.0.0.0/0"
+	  }
+	]
+      }
     },
     {
       "type": "portmap",
