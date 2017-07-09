@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	cniPath         = "/host/etc/cni/net.d/kube-cni.conf"
+	cniPath         = "/host/etc/cni/net.d/kube-cni.conflist"
 	cniConfTemplate = `
 {
   "name": "k8s-pod-network",
