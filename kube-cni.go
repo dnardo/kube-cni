@@ -18,9 +18,8 @@ var (
 	cniPath         = "/host/etc/cni/net.d/kube-cni.conflist"
 	cniConfTemplate = `
 {
-  "name": "k8s-pod-network",
-  "cniVersion": "0.3.0",
-  "plugins": [
+  "name": "gce-pod-network",
+  "cniVersion": "0.3.0",: [
     {
       "type": "ptp",
       "ipam": {
